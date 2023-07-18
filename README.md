@@ -37,8 +37,14 @@ To start the service use the next:
 
 ## Test
 To test the service you can use the next:
+### Option 1)
 ```shell
 curl -v -u user:$user-pwd-generated http://localhost:8080/greeting
+```
+### Option 2)
+```shell
+echo -n user:$user-pwd-generated | base64
+curl -v -H "Authorization: Basic output-previous-command" http://localhost:8080/greeting
 ```
 
 ## Reference
