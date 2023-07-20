@@ -11,9 +11,16 @@ Adding security layer to basic service
 * [References](#reference)
 
 ## General information
+This service it is being used to set up Spring Security from default to custom, for this version consider the next:
+* Default Spring Security configuration (Convention over Configuration)
+* Default Basic Authentication flow
+* Default Authentication provider
+* Default User details services
+* Default Password encoder
+
 
 ## Architecture design
-The architecture is work in progress
+The next diagram is the architecture current representation(work in progress)
 
 ![](docs/img/secured-service.png)
 
