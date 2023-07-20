@@ -31,6 +31,12 @@ Project is created with:
 * Spring Security (6.1.1)
 
 ## Setup
+Create self-signed Certificate
+```shell
+openssl req -newkey rsa:2048 -x509 -keyout key.pem -out cert.pem -days 365
+openssl pkcs12 -export -in cert.pem -inkey key.pem -out certificate.p12 -name "certificate"
+```
+
 To download dependencies and build the service use the next:
 ```shell
 ./gradlew build
@@ -46,12 +52,12 @@ To start the service use the next:
 To test the service you can use the next:
 ### Option 1)
 ```shell
-curl -v -u user:$user-pwd-generated http://localhost:8080/greeting
+curl -k -v -u user:$user-pwd-generated https://localhost:8080/greeting
 ```
 ### Option 2)
 ```shell
 echo -n user:$user-pwd-generated | base64
-curl -v -H "Authorization: Basic output-previous-command" http://localhost:8080/greeting
+curl -k -v -H "Authorization: Basic output-previous-command" https://localhost:8080/greeting
 ```
 
 ## Reference
