@@ -46,12 +46,12 @@ To start the service use the next:
 To test the service you can use the next:
 ### Option 1)
 ```shell
-curl -v -u user:$user-pwd-generated http://localhost:8080/greeting
+curl -v -u user:abc123 http://localhost:8080/v1/greeting
 ```
 ### Option 2)
 ```shell
-echo -n user:$user-pwd-generated | base64
-curl -v -H "Authorization: Basic output-previous-command" http://localhost:8080/greeting
+echo -n user:abc132 | base64
+curl -v -H "Authorization: Basic output-previous-command" http://localhost:8080/v1/greeting
 ```
 
 ## Reference
