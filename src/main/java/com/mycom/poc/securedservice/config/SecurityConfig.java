@@ -2,6 +2,7 @@ package com.mycom.poc.securedservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -35,10 +36,15 @@ public class SecurityConfig {
   //Authorization
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-    return httpSecurity.csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests(auth -> auth.requestMatchers("/v1/**")
-            .permitAll().anyRequest().authenticated()
-        ).build();
+    httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests(request ->
+            request.requestMatchers("/v1/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated())
+        .httpBasic(Customizer.withDefaults())
+    ;
+    return httpSecurity.build();
   }
 
   @Bean
