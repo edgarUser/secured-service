@@ -18,7 +18,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  //Authentication
   @Bean
   public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
 
@@ -33,7 +32,6 @@ public class SecurityConfig {
     return new InMemoryUserDetailsManager(admin, user);
   }
 
-  //Authorization
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity.csrf(AbstractHttpConfigurer::disable)
@@ -42,8 +40,7 @@ public class SecurityConfig {
                 .permitAll()
                 .anyRequest()
                 .authenticated())
-        .httpBasic(Customizer.withDefaults())
-    ;
+        .httpBasic(Customizer.withDefaults());
     return httpSecurity.build();
   }
 
